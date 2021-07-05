@@ -1,0 +1,40 @@
+.home-page{
+    background-color: darkcyan;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.body{
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
+.action-btn{
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    flex-direction: column;
+}
+.btn{
+    background-color: cornsilk; /* Green */
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+.input-block{
+    display: flex;
+    flex-direction: column;
+    padding: 15px 32px;
+}
+.input-section{
+    display: flex;
+    flex-direction: column;
+    padding: 15px ;
+}

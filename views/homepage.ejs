@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="main.css">
+    <script>
+      function startcall(){
+        var a=document.getElementById("code").value;
+        console.log(a);
+        window.location.href=a;
+      }
+    </script>
+    <title>MS Teams</title>
+</head>
+<body>
+  <div class="home-page">
+    <div class="body">
+      <h2>Teams Clone</h2>
+      <div class="action-btn">
+        <button class="btn" onClick="window.location.href='/home'">
+        <FontAwesomeIcon className="icon-block" icon={faVideo} />
+        Create a Meeting
+        </button>
+        <div class="input-block">
+          <div class="input-section">
+            <FontAwesomeIcon className="icon-block" icon={faKeyboard} />
+            <input id="code" placeholder="Enter a code or link" />
+          </div>
+            <button class="btn" onclick="startcall()">Join</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
