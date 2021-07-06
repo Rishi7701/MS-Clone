@@ -3,7 +3,7 @@ const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '443'
+  port: '3000'
 })
 
 let myVideoStream;
@@ -42,7 +42,7 @@ navigator.mediaDevices.getUserMedia({
     }
   });
   socket.on("createMessage", message => {
-    $("ul").append(`<li class="message"><b>${message.username}</b><span>${message.time}</span><br/>${message.text}</li>`);
+    $("ul").append(`<li class="message"><b>Anonymous</b><br/>${message}</li>`);
     scrollToBottom()
   })
 })
@@ -134,39 +134,4 @@ const setPlayVideo = () => {
     <span>Play Video</span>
   `
   document.querySelector('.main__video_button').innerHTML = html;
-}
-const screenshare = () =>{
-  navigator.mediaDevices.getDisplayMedia({
-  video:{
-  cursor:'always'
-  },
-  audio:{
-  echoCancellation:true,
-  noiseSupprission:true
-  }
-  
-  }).then(stream =>{
-  let videoTrack = stream.getVideoTracks()[0];
-  videoTrack.onended = function(){
-  stopScreenShare();
-  }
-  for (let x=0;x<currentPeer.length;x++){
-    let sender = currentPeer[x].getSenders().find(function(s){  //replace video track 
-      return s.track.kind == videoTrack.kind;
-    })
-    
-    sender.replaceTrack(videoTrack);
-  }
-})
-
-}
-
-function stopScreenShare(){
-let videoTrack = myVideoStream.getVideoTracks()[0];
-for (let x=0;x<currentPeer.length;x++){
-let sender = currentPeer[x].getSenders().find(function(s){
-return s.track.kind == videoTrack.kind;
-})
-sender.replaceTrack(videoTrack);
-}
 }
