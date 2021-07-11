@@ -155,26 +155,4 @@ mongo.connect(url, function(err, client){
 })
 
 
-
-
-
-// //runs anytime a user connects to web page
-// //join-room is event
-// io.on('connection', socket => {
-//     socket.on('join-room', (roomId, userId) => {
-//         // for current socket to join a room
-//         socket.join(roomId)
-//         // send a msg to everyone in the room that a new user connected
-//         socket.broadcast.to(roomId).emit('user-connected', userId)
-
-//         socket.on('message', message => {
-//             io.to(roomId).emit('createMessage', message)
-//         })
-
-//         socket.on('disconnect', () => {
-//             socket.broadcast.to(roomId).emit('user-disconnected', userId)
-//         })
-//     })
-// })
-
 server.listen(process.env.PORT || 3000)

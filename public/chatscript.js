@@ -3,9 +3,6 @@ const socket = io('/')
 var roomsgs=document.getElementById('messages')
 var textmsg=document.getElementById('textarea')
 var username = document.getElementById('usertext')
-/* var status=document.getElementById('status')
-var clearbtn=document.getElementById('clear') */
-
 
 socket.emit('join-chatRoom', CHATROOM_ID)
 console.log("inx chat script")

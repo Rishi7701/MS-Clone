@@ -3,8 +3,8 @@ const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  //port: '443'
-  port:'3000'
+  port: '443'
+  //port:'3000'
 })
 
 let myVideoStream;
@@ -12,25 +12,7 @@ const myVideo = document.createElement('video')
 var chatMessage = document.getElementById('chat_message')
 var newUserName = document.getElementById('userpara')
 var messages = document.getElementById('messages')
-//console.log(newUserName)
 
-/* var roomsgs=document.getElementById('messages')
-var textmsg=document.getElementById('textarea')
-var status=document.getElementById('status')
-var clearbtn=document.getElementById('clear') */
-
-/* var statusDefault = status.textContent;
-var setStatus = function(s){
-  // Set status
-  status.textContent = s;
-
-  if(s !== statusDefault){
-    var delay = setTimeout(function(){
-    setStatus(statusDefault);
-    }, 4000);
-  }
-}
- */
 myVideo.muted = true
 const peers = {}
 navigator.mediaDevices.getUserMedia({
@@ -82,28 +64,6 @@ navigator.mediaDevices.getUserMedia({
     }
   });
 
-  /* socket.on('status', function(data){
-    // get message status
-    setStatus((typeof data === 'object')? data.message : data);
-
-    // If status is clear, clear text
-    if(data.clear){
-        textarea.value = '';
-    }
- }); */
-
-  /* textmsg.addEventListener('keydown', function(event){
-    if(event.which === 13 && event.shiftKey == false){
-        // Emit to server input
-        socket.emit('input', {
-            name:username.value,
-            message:textmsg.value
-        });
-
-        event.preventDefault();
-    }
-}) */
-
   chatMessage.addEventListener('keydown', function(e){
     if(e.which === 13 && e.shiftKey == false){
         // Emit to server input
@@ -117,14 +77,6 @@ navigator.mediaDevices.getUserMedia({
         e.preventDefault();
     }
 })
-/* clearbtn.addEventListener('click', function(){
-  socket.emit('clear');
-});
-
-// Clear Message
-socket.on('cleared', function(){
-  messages.textContent = '';
-}); */
 })
 
 socket.on('user-disconnected', userId => {
