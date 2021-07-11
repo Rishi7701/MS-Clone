@@ -3,11 +3,34 @@ const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '443'
+  //port: '443'
+  port:'3000'
 })
 
 let myVideoStream;
 const myVideo = document.createElement('video')
+var chatMessage = document.getElementById('chat_message')
+var newUserName = document.getElementById('userpara')
+var messages = document.getElementById('messages')
+//console.log(newUserName)
+
+/* var roomsgs=document.getElementById('messages')
+var textmsg=document.getElementById('textarea')
+var status=document.getElementById('status')
+var clearbtn=document.getElementById('clear') */
+
+/* var statusDefault = status.textContent;
+var setStatus = function(s){
+  // Set status
+  status.textContent = s;
+
+  if(s !== statusDefault){
+    var delay = setTimeout(function(){
+    setStatus(statusDefault);
+    }, 4000);
+  }
+}
+ */
 myVideo.muted = true
 const peers = {}
 navigator.mediaDevices.getUserMedia({
@@ -30,10 +53,10 @@ navigator.mediaDevices.getUserMedia({
     setTimeout(() => {
       // user joined
       connectToNewUser(userId, stream)
-    }, 5000)
+    }, 1000)
   })
   // input value
-  let text = $("input");
+  /* let text = $("input");
   // when press enter send message
   $('html').keydown(function (e) {
     if (e.which == 13 && text.val().length !== 0) {
@@ -44,7 +67,64 @@ navigator.mediaDevices.getUserMedia({
   socket.on("createMessage", message => {
     $("ul").append(`<li class="message"><b>Anonymous</b><br/>${message}</li>`);
     scrollToBottom()
-  })
+  }) */
+  socket.on('output', function(data){
+    //console.log(data);
+    if(data.length){
+        for(var x = 0;x < data.length;x++){
+            // Build out message div
+            var message = document.createElement('div');
+            message.setAttribute('class', 'chat-message');
+            message.textContent = data[x].name+": "+data[x].message;
+            messages.appendChild(message);
+            // messages.insertBefore(message, messages.firstChild);
+        }
+    }
+  });
+
+  /* socket.on('status', function(data){
+    // get message status
+    setStatus((typeof data === 'object')? data.message : data);
+
+    // If status is clear, clear text
+    if(data.clear){
+        textarea.value = '';
+    }
+ }); */
+
+  /* textmsg.addEventListener('keydown', function(event){
+    if(event.which === 13 && event.shiftKey == false){
+        // Emit to server input
+        socket.emit('input', {
+            name:username.value,
+            message:textmsg.value
+        });
+
+        event.preventDefault();
+    }
+}) */
+
+  chatMessage.addEventListener('keydown', function(e){
+    if(e.which === 13 && e.shiftKey == false){
+        // Emit to server input
+        socket.emit('input', {
+            name:newUserName.value,
+            message:chatMessage.value
+        });
+        
+        chatMessage.value = ''
+
+        e.preventDefault();
+    }
+})
+/* clearbtn.addEventListener('click', function(){
+  socket.emit('clear');
+});
+
+// Clear Message
+socket.on('cleared', function(){
+  messages.textContent = '';
+}); */
 })
 
 socket.on('user-disconnected', userId => {
@@ -76,11 +156,21 @@ function addVideoStream(video, stream) {
   videoGrid.append(video)
 }
 
-const scrollToBottom = () => {
+/* const scrollToBottom = () => {
   var d = $('.main__chat_window');
   d.scrollTop(d.prop("scrollHeight"));
-}
+} */
 
+const newmeet = () =>{
+  var newroom = document.createElement("textarea");
+  newroom.value = short.generate()
+  document.body.appendChild(newroom);
+  //console.log(newroom)
+  newroom.select()
+  document.execCommand("copy")
+  alert("Copied the newroom code: " + newroom.value);
+  document.body.removeChild(newroom);
+}
 const muteUnmute = () => {
   const enabled = myVideoStream.getAudioTracks()[0].enabled;
   if (enabled) {
@@ -91,9 +181,13 @@ const muteUnmute = () => {
     myVideoStream.getAudioTracks()[0].enabled = true;
   }
 }
+/* const raise = () => {
+  socket.
+  alert(username.value+" raised hand" );
+} */
 
 const playStop = () => {
-  console.log('object')
+  //console.log('object')
   let enabled = myVideoStream.getVideoTracks()[0].enabled;
   if (enabled) {
     myVideoStream.getVideoTracks()[0].enabled = false;
@@ -135,3 +229,5 @@ const setPlayVideo = () => {
   `
   document.querySelector('.main__video_button').innerHTML = html;
 }
+console.log("Peers in grp")
+console.log(peers)

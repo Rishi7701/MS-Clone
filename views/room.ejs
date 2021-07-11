@@ -16,6 +16,48 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="script.js" defer></script>
   <title>MSTeams Clone</title>
+  <script>
+   function details(){
+      var copycode = window.location.pathname.split('/')
+      var dummy = document.createElement("textarea");
+      dummy.value = copycode[1]
+      document.body.appendChild(dummy);
+      console.log(dummy)
+      //console.log(ROOM_ID)
+      console.log(copycode[0])
+      dummy.select()
+      document.execCommand("copy")
+      alert("Copied the call code: " + dummy.value);
+      document.body.removeChild(dummy);
+   }
+   var dummy2
+   window.onload = function() {
+      const username = prompt("Chat with name:");
+      if (username != null) {
+         document.getElementById("userpara").innerHTML = username;
+      } else {
+         document.getElementById("userpara").innerHTML = "Anonymous";
+      }
+   }
+   function raise(){
+      var dummyvar = document.createElement("textarea");
+      console.log('in raise')
+      console.log(username)
+      dummyvar.value = username
+      document.body.appendChild(dummyvar);
+      dummyvar.select()
+      alert(dummyvar.value+" raised hand" );
+      document.body.removeChild(dummyvar);
+   }
+    function back(){
+      var dummy = document.createElement("textarea");
+      document.body.appendChild(dummy);
+      dummy.select()
+      alert("Leaving Room" );
+      document.body.removeChild(dummy);
+      window.location.href='/';
+      } 
+</script>
   <style>
      #video-grid{
          display: flex;
@@ -40,8 +82,9 @@
        </div>
        <div class="main__controls">
         <div class="main__controls__block">
-          <div onclick="screenshare()" class="main__controls__button">
-             <span>Share Screen</span>
+          <div onclick="details()" class="main__controls__button">
+            <i class="fas fa-clipboard"></i>
+             <span>Meet Code</span>
           </div>
        </div>
           <div class="main__controls__block">
@@ -53,10 +96,14 @@
                 <i class="fas fa-video"></i>
                 <span>Stop Video</span>
              </div>
+             <div onlick="raise()" class="main__controls__button main__hand_button">
+               <i class="fa fa-hand-paper-o" aria-hidden="true"></i>
+               <span>Raise hand</span>
+             </div>
           </div>
           <div class="main__controls__block">
              <div class="main__controls__button">
-                <span class="leave_meeting" onclick="window.location.href='/'">Leave Meeting</span>
+                <span class="leave_meeting" onclick="back()">Leave Meeting</span>
              </div>
           </div>
        </div>
@@ -65,12 +112,21 @@
        <div class="main__header">
           <h6>Chat</h6>
        </div>
-       <div class="main__chat_window">
+       <div class="main__header">
+         <textarea id="userpara" style="display: none;" ></textarea>
+         <h6 id="noUser"></h6>
+      </div>
+       <!-- <div class="main__chat_window">
           <ul class="messages">
              
           </ul>
 
-       </div>
+       </div> -->
+       <div class="main__chat_window">
+         <div class="messages" id="messages">
+            
+         </div>
+      </div>
        <div class="main__message_container">
           <input id="chat_message" type="text" placeholder="Type message here...">
        </div>

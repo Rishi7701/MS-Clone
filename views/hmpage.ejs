@@ -17,6 +17,9 @@
               console.log(a);
               window.location.href=a;
             }
+			function create(){
+				
+			}
         </script>
 		<title>ChatCord App</title>
 	</head>
@@ -42,7 +45,7 @@
 						<FontAwesomeIcon className="icon-block" icon={faKeyboard} />
                         <input id ="rmcode" type="text" placeholder="Enter a code or link to Join" />
 					</div>
-                    <button type="submit" class="btn" onClick="window.location.href='/home'">Create a Meeting</button>
+                    <button type="submit" class="btn" onClick="create()">Create a Meeting</button>
 					<button type="submit" class="btn" onclick="joincall()">Join Room</button>
 				</form>
 			</main>

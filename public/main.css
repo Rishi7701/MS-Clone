@@ -1,5 +1,7 @@
 .home-page{
-    background-image: url('C:\Users\A.S.N.Rishika\Pictures\ggmeet.png');
+    background-image: url('gmeett.png');
+    background-size: cover;
+    opacity: 1;
     height: 100vh;
     display: flex;
     flex-direction: column;

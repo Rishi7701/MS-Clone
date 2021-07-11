@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        const CHATROOM_ID = "<%= chatroomId %>"
+    </script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <title>Chat Room</title>
+    <style>
+        #messages{height:450px;}
+    </style>
+    <script src="/chatscript.js" defer></script>
+    <script>
+        window.onload = function() {
+           const user = prompt("Please enter your name.");
+           if (user != null) {
+              document.getElementById("usertext").innerHTML = user;
+           } else {
+              document.getElementById("noname").innerHTML = "Stranger";
+           }
+        }
+        function startcall(){
+          //To get the meet code entered
+          /* var a=document.getElementById("rmcode").value;
+          console.log(a); */
+          var dummy = document.createElement("textarea");
+          document.body.appendChild(dummy);
+          dummy.select()
+          alert("Redirecting to the meeting");
+          document.body.removeChild(dummy);
+          window.location.href='/' +CHATROOM_ID;
+        }
+        function copy(){
+            /* var copycode = window.location.pathname.split('/')
+            var dummy = document.createElement("textarea");
+            dummy.value = copycode[2]
+            document.body.appendChild(dummy); */
+            //console.log(dummy)
+            //console.log(copycode[2]+" room")
+            var dummy = document.createElement("textarea");
+            dummy.value = CHATROOM_ID
+            document.body.appendChild(dummy);
+            console.log("in copy")
+            console.log(CHATROOM_ID)
+            dummy.select()
+            document.execCommand("copy")
+            alert("Copied the room code: " + dummy.value);
+            document.body.removeChild(dummy);
+        }
+     </script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 col-sm-12">
+                <h1 class="text-center">
+                    Chatroom 
+                    <button id="roomcode" class="btn btn-danger" onclick="copy()">Copy RoomCode</button>
+                </h1>
+                <div id="status"></div>
+                <div id="chat">
+                    <!-- <input type="text" id="username" class="form-control" placeholder="Enter name..."> -->
+                    <div class="ibhu">
+                        <textarea id="usertext" style="display: none;" ></textarea>
+                        <h6 id="noname"></h6>
+                    </div>
+                    <br>
+                    <div class="card">
+                        <div id="messages" class="card-block">
+
+                        </div>
+                    </div>
+                    <br>
+                    <textarea id="textarea" class="form-control" placeholder="Enter message..."></textarea>
+                    <i class="fa fa-paper-plane" onclick="sendmsg()"></i>
+                    <button id="meet" class="btn btn-danger" onclick="startcall()">Join Meeting</button>
+                    <button id="leave" class="btn btn-danger" onclick="window.location.href='/'">Leave Room</button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+
+    <!-- <script>
+        (function(){
+            var element = function(id){
+                return document.getElementById(id);
+            }
+
+            // Get Elements
+            var status = element('status');
+            var messages = element('messages');
+            var textarea = element('textarea');
+            var username = user;
+            var clearBtn = element('clear');
+
+            // Set default status
+            var statusDefault = status.textContent;
+
+            var setStatus = function(s){
+                // Set status
+                status.textContent = s;
+
+                if(s !== statusDefault){
+                    var delay = setTimeout(function(){
+                        setStatus(statusDefault);
+                    }, 4000);
+                }
+            }
+
+            // Connect to socket.io
+            var socket = io.connect('http://127.0.0.1:3000');
+
+            // Check for connection
+            if(socket !== undefined){
+                console.log('Connected to socket...');
+
+                // Handle Output
+                socket.on('output', function(data){
+                    //console.log(data);
+                    if(data.length){
+                        for(var x = 0;x < data.length;x++){
+                            // Build out message div
+                            var message = document.createElement('div');
+                            message.setAttribute('class', 'chat-message');
+                            message.textContent = data[x].name+": "+data[x].message;
+                            messages.appendChild(message);
+                            messages.insertBefore(message, messages.firstChild);
+                        }
+                    }
+                });
+
+                // Get Status From Server
+                socket.on('status', function(data){
+                    // get message status
+                    setStatus((typeof data === 'object')? data.message : data);
+
+                    // If status is clear, clear text
+                    if(data.clear){
+                        textarea.value = '';
+                    }
+                });
+
+                // Handle Input
+                textarea.addEventListener('keydown', function(event){
+                    if(event.which === 13 && event.shiftKey == false){
+                        // Emit to server input
+                        socket.emit('input', {
+                            name:username.value,
+                            message:textarea.value
+                        });
+
+                        event.preventDefault();
+                    }
+                })
+
+                // Handle Chat Clear
+                clearBtn.addEventListener('click', function(){
+                    socket.emit('clear');
+                });
+
+                // Clear Message
+                socket.on('cleared', function(){
+                    messages.textContent = '';
+                });
+            }
+
+        })();
+    </script>
+     -->
+</body>
+</html>

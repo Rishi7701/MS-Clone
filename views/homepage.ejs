@@ -7,10 +7,16 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <link rel="stylesheet" href="main.css">
     <script>
-      function startcall(){
-        var a=document.getElementById("code").value;
+      /* function startcall(){
+        //To get the meet code entered
+        var a=document.getElementById("rmcode").value;
         console.log(a);
-        window.location.href=a;
+        window.location.href='/' +a;
+      } */
+      function joinroom(){
+        var b=document.getElementById("code").value;
+        console.log(b);
+        window.location.href='/chat/'+b;
       }
     </script>
     <title>MS Teams</title>
@@ -22,15 +28,21 @@
       <div class="action-btn">
         <button class="btn" onClick="window.location.href='/home'">
         <FontAwesomeIcon className="icon-block" icon={faVideo} />
-        Create a Meeting
+        Create a Room
         </button>
         <div class="input-block">
           <div class="input-section">
             <FontAwesomeIcon className="icon-block" icon={faKeyboard} />
-            <input id="code" placeholder="Enter a code or link" />
+            <input id="code" placeholder="Enter chatroom code" />
           </div>
-            <button class="btn" onclick="startcall()">Join</button>
+            <button class="btn" onclick="joinroom()">Join</button>
         </div>
+        <!-- <div class="input-section">
+          <FontAwesomeIcon className="icon-block" icon={faKeyboard} />
+          <input id="rmcode" placeholder="Enter room code to join meeting" />
+        </div>
+          <button class="btn" onclick="startcall()">Join ChatRoom</button> -->
+      </div>
       </div>
     </div>
   </div>
