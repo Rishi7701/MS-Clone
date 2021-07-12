@@ -1,5 +1,5 @@
 # Teams_Clone
-Simple Microsoft Teams Clone app built under Microsoft Engagae 2021 program using Expressjs server, Mongo
+Simple Microsoft Teams Clone app built under Microsoft Engagae 2021 program.
 
 ## Deployed App on Heroku
 #### Click here to open app : [Teams_Clone](https://thawing-escarpment-07155.herokuapp.com/)
