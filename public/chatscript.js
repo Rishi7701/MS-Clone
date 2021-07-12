@@ -21,6 +21,7 @@ function displayMsg (data) {
     // roomsgs.appendChild('<span class="msg"><b>' + data.name + ': </b>' + data.message + "</span><br/>");
 }
 
+//To emit messages when pressed enter
 textmsg.addEventListener('keydown', function(event){
     if(event.which === 13 && event.shiftKey == false){
         // Emit to server input

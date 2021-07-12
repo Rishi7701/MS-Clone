@@ -52,6 +52,7 @@ navigator.mediaDevices.getUserMedia({
     }
   });
 
+  //To emit messagess typed in meet room
   chatMessage.addEventListener('keydown', function(e){
     if(e.which === 13 && e.shiftKey == false){
         // Emit to server input
