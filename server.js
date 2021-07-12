@@ -80,14 +80,14 @@ mongo.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, function(err, 
             let chat = db.collection(roomId);
 
             // Get chats from rromid collection
-            chat.find().toArray(function(err, res){ // removed {} => find({})
+            /* chat.find().toArray(function(err, res){ // removed {} => find({})
                 if(err){
                     throw err
                 }
                 //console.log('IN EMIT', res)
                 // Emits the message
                 socket.emit('output', res) 
-            })
+            }) */
 
             //  Handling input
             socket.on('input', function(data){
