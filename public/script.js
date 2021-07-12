@@ -181,5 +181,3 @@ const setPlayVideo = () => {
   `
   document.querySelector('.main__video_button').innerHTML = html;
 }
-console.log("Peers in grp")
-console.log(peers)

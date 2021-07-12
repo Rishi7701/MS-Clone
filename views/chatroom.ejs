@@ -10,17 +10,20 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <title>Chat Room</title>
     <style>
-        #messages{height:450px;}
+        #messages{height:400px;}
     </style>
     <script src="/socket.io/socket.io.js" defer></script>
     <script src="/chatscript.js" defer></script>
     <script>
         window.onload = function() {
            const user = prompt("Please enter your name.");
-           if (user != null) {
+           if (user == ""){
+              document.getElementById("usertext").innerHTML = "Anonymous";
+           }
+           else if (user != null) {
               document.getElementById("usertext").innerHTML = user;
-           } else {
-              document.getElementById("noname").innerHTML = "Stranger";
+           } else if (user == null) {
+              document.getElementById("usertext").innerHTML = "Anonymous";
            }
         }
         function startcall(){
@@ -35,12 +38,6 @@
           window.location.href='/' +CHATROOM_ID;
         }
         function copy(){
-            /* var copycode = window.location.pathname.split('/')
-            var dummy = document.createElement("textarea");
-            dummy.value = copycode[2]
-            document.body.appendChild(dummy); */
-            //console.log(dummy)
-            //console.log(copycode[2]+" room")
             var dummy = document.createElement("textarea");
             dummy.value = CHATROOM_ID
             document.body.appendChild(dummy);

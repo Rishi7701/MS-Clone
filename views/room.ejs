@@ -18,9 +18,8 @@
   <title>MSTeams Clone</title>
   <script>
    function details(){
-      var copycode = window.location.pathname.split('/')
       var dummy = document.createElement("textarea");
-      dummy.value = copycode[1]
+      dummy.value = ROOM_ID
       document.body.appendChild(dummy);
       console.log(dummy)
       //console.log(ROOM_ID)
@@ -33,22 +32,15 @@
    var dummy2
    window.onload = function() {
       const username = prompt("Chat with name:");
-      if (username != null) {
-         document.getElementById("userpara").innerHTML = username;
-      } else {
-         document.getElementById("userpara").innerHTML = "Anonymous";
-      }
+      if (username == ""){
+              document.getElementById("userpara").innerHTML = "Anonymous";
+           }
+           else if (username != null) {
+              document.getElementById("userpara").innerHTML = username;
+           } else if (username == null) {
+              document.getElementById("userpara").innerHTML = "Anonymous";
+           }
    }
-   /* function raise(){
-      var dummyvar = document.createElement("textarea");
-      console.log('in raise')
-      console.log(username)
-      dummyvar.value = username
-      document.body.appendChild(dummyvar);
-      dummyvar.select()
-      alert(dummyvar.value+" raised hand" );
-      document.body.removeChild(dummyvar);
-   } */
     function back(){
       var dummy = document.createElement("textarea");
       document.body.appendChild(dummy);
