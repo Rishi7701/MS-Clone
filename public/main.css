@@ -9,7 +9,6 @@
 }
 h1{
     align-items: center;
-    flex: 1;
     justify-content: center;
     display: flex;
     flex-direction: column;
