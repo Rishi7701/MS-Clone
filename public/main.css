@@ -1,6 +1,6 @@
 .home-page{
     background-image: url('gmeett.png');
-    background-size: cover;
+    background-size:cover;
     opacity: 1;
     height: 100vh;
     display: flex;
