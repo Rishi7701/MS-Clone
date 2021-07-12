@@ -13,14 +13,11 @@ socket.on('load msgs', function(docs) {
 });
 
 function displayMsg (data) {
-    // console.log(data);
-    // console.log("IN HERE")
     var message = document.createElement('div');
     message.setAttribute('class', 'chat-message');
     message.textContent = data.name+":  " +data.message;
     roomsgs.appendChild(message);
     // roomsgs.insertBefore(message, messages.firstChild);
-
     // roomsgs.appendChild('<span class="msg"><b>' + data.name + ': </b>' + data.message + "</span><br/>");
 }
 
@@ -40,7 +37,7 @@ textmsg.addEventListener('keydown', function(event){
 function sendmsg(){
     socket.emit('input', {
         name:username.value,
-        message:textarea.value
+        message:textmsg.value
     });
     textmsg.value = ''
 }
@@ -53,7 +50,7 @@ socket.on('output', function(data){
     var message = document.createElement('div');
     message.setAttribute('class', 'chat-message');
     message.textContent = data.name+ ": " +data.message;
-    messages.appendChild(message);
-    messages.insertBefore(message, messages.firstChild);
+    roomsgs.appendChild(message);
+    roomsgs.insertBefore(message, roomsgs.firstChild);
         
 });

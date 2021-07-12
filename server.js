@@ -21,8 +21,6 @@ const peerServer = ExpressPeerServer(server, {
 const mongo = require('mongodb').MongoClient
 
 
-//const recordScreen = require('record-screen')
-
 // rendering views, using ejs lib
 app.set('view engine', 'ejs')
 // setting up static folder -> all of js, css in *public* folder
