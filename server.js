@@ -56,7 +56,7 @@ app.get('/chat/:chatroom', (req, res) => {
 const dbName = 'mongochat'
 var url = 'mongodb://127.0.0.1'
 
-mongodb+srv://Rishika_01:Teamsclone_01@cluster0.uso0x.mongodb.net/mongochat?retryWrites=true&w=majority
+"mongodb+srv://Rishika_01:Teamsclone_01@cluster0.uso0x.mongodb.net/mongochat?retryWrites=true&w=majority"
 mongo.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, function(err, client){
     if(err){
         throw err;
