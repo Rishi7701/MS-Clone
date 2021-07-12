@@ -1,5 +1,6 @@
 .home-page{
-    background-image: url('home.png');
+    /* background-image: url('gmeett.png'); */
+    background-color:indianred;
     background-size:cover;
     opacity: 1;
     height: 100vh;
