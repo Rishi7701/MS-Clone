@@ -1,6 +1,6 @@
 .home-page{
-    /* background-image: url('gmeett.png'); */
-    background-color:indianred;
+    background-image: url('gmeett.png');
+    /* background-color:mediumaquamarine; */
     background-size:cover;
     opacity: 1;
     height: 100vh;
