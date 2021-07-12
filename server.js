@@ -128,11 +128,6 @@ mongo.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, function(err, 
                 // console.log('sending previous messages', docs);
                 socket.emit('load msgs', docs);
             });
-            // chat.find({}, function(err, docs) {
-            //     if(err) throw err;
-            //     console.log('sending previous messages', docs);
-            //     // socket.emit("load old msg", docs);
-            // });
 
             //  Handling input
             socket.on('input', function(data){
