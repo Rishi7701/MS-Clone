@@ -1,8 +1,8 @@
 const express = require('express')
 const app = express()
 const server = require('http').Server(app)
-// const io = require('socket.io')(server)
-const io = require('socket.io')(server, {
+const io = require('socket.io')(server)
+/* const io = require('socket.io')(server, {
     cors: {
         origin: "http://localhost",
         methods: ["GET", "POST"],
@@ -10,7 +10,7 @@ const io = require('socket.io')(server, {
         credentials: true
     },
     allowEIO3: true
-});
+}); */
 const { v4: uuidV4 } = require('uuid')
 const short = require('short-uuid');
 const { ExpressPeerServer } = require('peer')
@@ -100,7 +100,7 @@ mongo.connect(url, function(err, client){
                 }
                 else {
                     // Insert the message to collection
-                    chat.insert({name: name, message: message}, function(){
+                    chat.insertOne({name: name, message: message}, function(){
                         io.emit('output', [data]);
                     })
                 }
@@ -145,7 +145,7 @@ mongo.connect(url, function(err, client){
                 else {
                     // Insert the message to collection
                     //console.log("IN INPUT IOIOIOI")
-                    chat.insert({name: name, message: message}, function(){
+                    chat.insertOne({name: name, message: message}, function(){
                         io.emit('load msgs', [data]);
                     })
                 }
