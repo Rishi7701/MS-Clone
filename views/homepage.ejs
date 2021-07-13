@@ -15,8 +15,17 @@
       } */
       function joinroom(){
         var b=document.getElementById("code").value;
-        console.log(b);
-        window.location.href='/chat/'+b;
+        if(b==""||b==null){
+          var dummy = document.createElement("textarea");
+          document.body.appendChild(dummy);
+           console.log(dummy)
+          dummy.select()
+          alert("Please Enter Chatroom code to enter");
+          document.body.removeChild(dummy);
+        }
+        else{
+          window.location.href='/chat/'+b;
+        }
       }
     </script>
     <title>MS Teams</title>
